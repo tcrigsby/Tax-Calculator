@@ -6,11 +6,6 @@ import {
   PRIMARY_RESIDENCE_EXCLUSION, MEDICAL_EXPENSE_AGI_FLOOR,
 } from './constants';
 
-// ---- Helper ----
-function clamp(val: number, min: number, max: number): number {
-  return Math.max(min, Math.min(max, val));
-}
-
 // ---- Income Aggregation ----
 function computeIncomeBreakdown(input: TaxInput) {
   const wageIncome = input.w2s.reduce((sum, w) => sum + w.wages, 0);

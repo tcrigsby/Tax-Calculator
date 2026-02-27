@@ -5,7 +5,8 @@ import type { TaxInput, TaxResult } from '../tax-engine/types';
 
 export async function generatePdf(input: TaxInput, result: TaxResult): Promise<void> {
   const doc = createElement(TaxReturnDocument, { input, result });
-  const blob = await pdf(doc).toBlob();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const blob = await pdf(doc as any).toBlob();
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;

@@ -115,16 +115,16 @@ function makeListActions<T extends { id: string }>(
 ) {
   return {
     add: (entry: T) =>
-      set((state) => ({ [key]: [...(state[key] as T[]), entry] } as Partial<TaxStore>)),
+      set((state) => ({ [key]: [...(state[key] as unknown as T[]), entry] } as Partial<TaxStore>)),
     update: (id: string, update: Partial<T>) =>
       set((state) => ({
-        [key]: (state[key] as T[]).map((item) =>
+        [key]: (state[key] as unknown as T[]).map((item) =>
           item.id === id ? { ...item, ...update } : item
         ),
       } as Partial<TaxStore>)),
     remove: (id: string) =>
       set((state) => ({
-        [key]: (state[key] as T[]).filter((item) => item.id !== id),
+        [key]: (state[key] as unknown as T[]).filter((item) => item.id !== id),
       } as Partial<TaxStore>)),
   };
 }
@@ -224,7 +224,7 @@ export const useTaxStore = create<TaxStore>()(
           // Upload step was inserted at index 0, shift existing step forward
           state.currentStep = ((state.currentStep as number) || 0) + 1;
         }
-        return state as TaxStore;
+        return state as unknown as TaxStore;
       },
     }
   )
