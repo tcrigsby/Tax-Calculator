@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "Bash(npm install zustand react-hook-form @hookform/resolvers zod @react-pdf/renderer lucide-react)",
+      "Bash(npm install -D tailwindcss @tailwindcss/vite)",
+      "Bash(python3 -c \":*)",
+      "Bash(node -e \"const fs = require\\(''fs''\\); const content = Buffer.from\\(process.argv[1], ''base64''\\).toString\\(''utf8''\\); fs.writeFileSync\\(process.argv[2], content\\); console.log\\(''Written '' + content.length + '' bytes''\\);\" \"dGVzdA==\" \"C:/Users/tcrig/Desktop/Tax App/src/components/wizard/test.txt\")",
+      "Bash(node -e \":*)",
+      "Bash(node -e \"const fs=require\\(''fs''\\); fs.writeFileSync\\(''C:/Users/tcrig/Desktop/Tax App/_write.js'', ''const fs = require\\(\"\"fs\"\"\\);\\\\nconst chunks = [];\\\\nconst add = \\(s\\) => chunks.push\\(s\\);\\\\nmodule.exports = { add, write: \\(p\\) => fs.writeFileSync\\(p, chunks.join\\(\"\"\"\"\\)\\) };\\\\n''\\); console.log\\(''Helper created''\\);\")",
+      "Bash(node -e \"const fs=require\\(''fs''\\); fs.writeFileSync\\(''C:/Users/tcrig/Desktop/Tax App/_encoder.js'', ''const fs = require\\(\"\"fs\"\"\\);\\\\nconst content = fs.readFileSync\\(process.argv[2], \"\"utf8\"\"\\);\\\\nconsole.log\\(Buffer.from\\(content\\).toString\\(\"\"base64\"\"\\)\\);\\\\n''\\); console.log\\(''Encoder script created''\\);\")",
+      "Bash(node -e \"const fs=require\\(''fs''\\); fs.writeFileSync\\(''C:/Users/tcrig/Desktop/Tax App/_decoder.js'', ''const fs = require\\(\"\"fs\"\"\\);\\\\nconst b64 = fs.readFileSync\\(process.argv[2], \"\"utf8\"\"\\).replace\\(/\\\\s/g, \"\"\"\"\\);\\\\nconst content = Buffer.from\\(b64, \"\"base64\"\"\\).toString\\(\"\"utf8\"\"\\);\\\\nfs.writeFileSync\\(process.argv[3], content\\);\\\\nconsole.log\\(\"\"Written \"\" + content.length + \"\" bytes to \"\" + process.argv[3]\\);\\\\n''\\); console.log\\(''Decoder script ready''\\);\")",
+      "Bash(node -e:*)",
+      "Bash(getconf ARG_MAX)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(npx vite build)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npm --version)",
+      "Bash(gh auth status)",
+      "Bash(npm install pdfjs-dist)",
+      "Bash(gh --version)",
+      "Bash(git --version)",
+      "Bash(git init)",
+      "Bash(git remote add origin https://github.com/tcrigsby/Tax-Calculator.git)",
+      "Bash(git add -A)"
+    ]
+  }
+}
