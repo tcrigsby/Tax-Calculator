@@ -1,10 +1,13 @@
+import { useTaxInput } from '../../hooks/useTaxInput';
 import { useTaxCalculation } from '../../hooks/useTaxCalculation';
 import { useTaxStore } from '../../store/useTaxStore';
 import { FILING_STATUS_LABELS } from '../../tax-engine/types';
 import { formatCurrency, formatPercent } from '../../utils/format';
 import { generatePdf } from '../../pdf/generatePdf';
+import { SuggestionsPanel } from './SuggestionsPanel';
 
 export function StepResults() {
+  const input = useTaxInput();
   const result = useTaxCalculation();
   const store = useTaxStore();
   const setCurrentStep = store.setCurrentStep;
@@ -12,18 +15,6 @@ export function StepResults() {
   const isRefund = result.refundOrOwed >= 0;
 
   const handleExportPdf = async () => {
-    const input = {
-      filingStatus: store.filingStatus,
-      w2s: store.w2s,
-      income1099: {
-        nec: store.necs, int: store.ints, div: store.divs,
-        b: store.bs, misc: store.miscs, r: store.rs, s: store.ss,
-      },
-      deductions: store.deductions,
-      realEstateSales: store.realEstateSales,
-      brokerage: store.brokerage,
-      priorYear: store.priorYear,
-    };
     await generatePdf(input, result);
   };
 
@@ -173,6 +164,9 @@ export function StepResults() {
           </span>
         </div>
       </ResultSection>
+
+      {/* Suggestions */}
+      <SuggestionsPanel />
 
       {/* Capital Loss Carryforward */}
       {result.capitalLossCarryforward > 0 && (

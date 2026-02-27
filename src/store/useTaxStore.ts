@@ -82,6 +82,11 @@ export interface TaxStore {
   currentStep: number;
   setCurrentStep: (step: number) => void;
 
+  // Suggestions
+  dismissedSuggestions: string[];
+  dismissSuggestion: (id: string) => void;
+  restoreAllSuggestions: () => void;
+
   // Reset
   resetAll: () => void;
 }
@@ -203,6 +208,13 @@ export const useTaxStore = create<TaxStore>()(
         currentStep: 0,
         setCurrentStep: (step) => set({ currentStep: step }),
 
+        dismissedSuggestions: [],
+        dismissSuggestion: (id) =>
+          set((state) => ({
+            dismissedSuggestions: [...state.dismissedSuggestions, id],
+          })),
+        restoreAllSuggestions: () => set({ dismissedSuggestions: [] }),
+
         resetAll: () => set({
           filingStatus: 'single',
           w2s: [],
@@ -212,17 +224,20 @@ export const useTaxStore = create<TaxStore>()(
           brokerage: defaultBrokerage,
           priorYear: defaultPriorYear,
           currentStep: 0,
+          dismissedSuggestions: [],
         }),
       };
     },
     {
       name: 'tax-app-storage',
-      version: 2,
+      version: 3,
       migrate: (persistedState: unknown, version: number) => {
         const state = persistedState as Record<string, unknown>;
         if (version < 2) {
-          // Upload step was inserted at index 0, shift existing step forward
           state.currentStep = ((state.currentStep as number) || 0) + 1;
+        }
+        if (version < 3) {
+          state.dismissedSuggestions = [];
         }
         return state as unknown as TaxStore;
       },
