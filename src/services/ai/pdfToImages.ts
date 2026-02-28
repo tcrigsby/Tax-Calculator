@@ -1,10 +1,8 @@
 import * as pdfjsLib from 'pdfjs-dist';
+import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.mjs?url';
 
-// Use the bundled worker
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.mjs',
-  import.meta.url,
-).toString();
+// Use the bundled worker — Vite's ?url import resolves the base path correctly
+pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 export async function pdfToImages(file: File, maxPages = 10): Promise<string[]> {
   const arrayBuffer = await file.arrayBuffer();
